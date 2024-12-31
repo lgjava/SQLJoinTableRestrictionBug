@@ -1,9 +1,6 @@
 package org.hibernate.bugs.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,9 +18,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "student_inf")
-@Getter
-@Setter
-@ToString
 public class Student
 {
 	@Id
@@ -40,6 +34,67 @@ public class Student
 			joinColumns = @JoinColumn(name = "student_id"),
 			inverseJoinColumns = @JoinColumn(name = "clazz_code")
 	)
-	@ToString.Exclude
 	private Set<Clazz> clazzes = new HashSet<>();
+
+	public Integer getId()
+	{
+		return id;
+	}
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	public String getAddress()
+	{
+		return address;
+	}
+	public void setAddress(String address)
+	{
+		this.address = address;
+	}
+	public int getAge()
+	{
+		return age;
+	}
+	public void setAge(int age)
+	{
+		this.age = age;
+	}
+
+	public char getGender()
+	{
+		return gender;
+	}
+	public void setGender(char gender)
+	{
+		this.gender = gender;
+	}
+	public Set<Clazz> getClazzes()
+	{
+		return clazzes;
+	}
+	public void setClazzes(Set<Clazz> clazzes)
+	{
+		this.clazzes = clazzes;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Student{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", address='" + address + '\'' +
+				", age=" + age +
+				", gender=" + gender +
+				'}';
+	}
 }

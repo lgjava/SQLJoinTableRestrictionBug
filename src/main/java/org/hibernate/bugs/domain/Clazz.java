@@ -4,9 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.SQLJoinTableRestriction;
 
 /**
@@ -22,9 +19,6 @@ import org.hibernate.annotations.SQLJoinTableRestriction;
  */
 @Entity
 @Table(name = "clazz_inf")
-@Getter
-@Setter
-@ToString
 public class Clazz
 {
 	@Id
@@ -40,6 +34,51 @@ public class Clazz
 			inverseJoinColumns = @JoinColumn(name = "student_id")
 	)
 	@SQLJoinTableRestriction("active = true")
-	@ToString.Exclude
 	private Set<Student> students = new HashSet<>();
+
+	public Clazz()
+	{
+	}
+
+	public Clazz(String name)
+	{
+		this.name = name;
+	}
+
+	public Integer getCode()
+	{
+		return code;
+	}
+	public void setCode(Integer code)
+	{
+		this.code = code;
+	}
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	public Set<Student> getStudents()
+	{
+		return students;
+	}
+
+	public void setStudents(Set<Student> students)
+	{
+		this.students = students;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Clazz{" +
+				"code=" + code +
+				", name='" + name + '\'' +
+				'}';
+	}
 }
